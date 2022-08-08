@@ -1,0 +1,1052 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "API Documentation",
+        "title": "My Project",
+        "contact": {
+            "name": "Developer"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "show basic response",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "summary": "show basic response",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "bad request",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "409": {
+                        "description": "conflict",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "internal error",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/Education": {
+            "get": {
+                "description": "Get List of Education",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Education"
+                ],
+                "summary": "Get List of Education",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Education"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/Employment": {
+            "get": {
+                "description": "Get List of Employment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employment"
+                ],
+                "summary": "Get List of Employment",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Employment"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/Photo/{id}": {
+            "delete": {
+                "description": "Delete Photo by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Delete Photo by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Photo ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/Profile": {
+            "get": {
+                "description": "Get List of Profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get List of Profile",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Profile"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create new Profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Create new Profile",
+                "parameters": [
+                    {
+                        "description": "Profile data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.ProfileAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.ProfileAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/Profile/{id}": {
+            "put": {
+                "description": "udpated Profile by Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Updated Profile by Id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Profile ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Profile data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.ProfileAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.ProfileAPI"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/Skill": {
+            "get": {
+                "description": "Get List of Skill",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Skill"
+                ],
+                "summary": "Get List of Skill",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Skill"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/WorkingExperience": {
+            "get": {
+                "description": "Get List of WorkingExperience",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WorkingExperience"
+                ],
+                "summary": "Get List of WorkingExperience",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.WorkingExperience"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/education": {
+            "post": {
+                "description": "create new Education",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Education"
+                ],
+                "summary": "Create new Education",
+                "parameters": [
+                    {
+                        "description": "Education data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.EducationAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.EducationAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/education/{id}": {
+            "delete": {
+                "description": "Delete Education by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Education"
+                ],
+                "summary": "Delete Education by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Education ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/employment": {
+            "post": {
+                "description": "create new Employment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employment"
+                ],
+                "summary": "Create new Employment",
+                "parameters": [
+                    {
+                        "description": "Employment data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.EmploymentAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.EmploymentAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/employment/{id}": {
+            "delete": {
+                "description": "Delete Employment by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employment"
+                ],
+                "summary": "Delete Employment by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Employment ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/info.json": {
+            "get": {
+                "description": "show info response",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "summary": "show info response",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "bad request",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "409": {
+                        "description": "conflict",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "internal error",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/photo": {
+            "get": {
+                "description": "Get List of Photo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Get List of Photo",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Photo"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create new Photo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Create new Photo",
+                "parameters": [
+                    {
+                        "description": "Photo data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PhotoAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.PhotoAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/skill": {
+            "post": {
+                "description": "create new Skill",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Skill"
+                ],
+                "summary": "Create new Skill",
+                "parameters": [
+                    {
+                        "description": "Skill data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SkillAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.SkillAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/skill/{id}": {
+            "delete": {
+                "description": "Delete Skill by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Skill"
+                ],
+                "summary": "Delete Skill by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Skill ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/workingExperience/{id}": {
+            "put": {
+                "description": "udpated WorkingExperience by Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WorkingExperience"
+                ],
+                "summary": "Updated WorkingExperience by Id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "WorkingExperience ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "WorkingExperience data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.WorkingExperienceAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.WorkingExperienceAPI"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "lib.Response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "description": "response message",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "http status",
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Education": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "degree": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "school": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.EducationAPI": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "degree": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "school": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "model.Employment": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "employer": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "job_title": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.EmploymentAPI": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "employer": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "job_title": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "model.Photo": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "image_profile": {
+                    "type": "string",
+                    "example": "scheme://domain.ltd/path/to/image.extension"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.PhotoAPI": {
+            "type": "object",
+            "properties": {
+                "image_profile": {
+                    "type": "string",
+                    "example": "scheme://domain.ltd/path/to/image.extension"
+                }
+            }
+        },
+        "model.Profile": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "date_of_birth": {
+                    "description": "Date Of Birth",
+                    "type": "string",
+                    "format": "date"
+                },
+                "driving_license": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "place_of_birth": {
+                    "type": "string"
+                },
+                "postal_code": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "wanted_job_title": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.ProfileAPI": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "date_of_birth": {
+                    "description": "Date Of Birth",
+                    "type": "string",
+                    "format": "date"
+                },
+                "driving_license": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "place_of_birth": {
+                    "type": "string"
+                },
+                "postal_code": {
+                    "type": "integer"
+                },
+                "wanted_job_title": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Skill": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "level": {
+                    "type": "string"
+                },
+                "skill": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.SkillAPI": {
+            "type": "object",
+            "properties": {
+                "level": {
+                    "type": "string"
+                },
+                "skill": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.WorkingExperience": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "working_experience": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.WorkingExperienceAPI": {
+            "type": "object",
+            "properties": {
+                "working_experience": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,707 @@
+basePath: /api/v1
+definitions:
+  lib.Response:
+    properties:
+      message:
+        description: response message
+        type: string
+      status:
+        description: http status
+        type: integer
+    type: object
+  model.Education:
+    properties:
+      city:
+        type: string
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      degree:
+        type: string
+      description:
+        type: string
+      end_date:
+        format: date
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      school:
+        type: string
+      start_date:
+        format: date
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.EducationAPI:
+    properties:
+      city:
+        type: string
+      degree:
+        type: string
+      description:
+        type: string
+      end_date:
+        format: date
+        type: string
+      school:
+        type: string
+      start_date:
+        format: date
+        type: string
+    type: object
+  model.Employment:
+    properties:
+      city:
+        type: string
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      description:
+        type: string
+      employer:
+        type: string
+      end_date:
+        format: date
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      job_title:
+        type: string
+      start_date:
+        format: date
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.EmploymentAPI:
+    properties:
+      city:
+        type: string
+      description:
+        type: string
+      employer:
+        type: string
+      end_date:
+        format: date
+        type: string
+      job_title:
+        type: string
+      start_date:
+        format: date
+        type: string
+    type: object
+  model.Photo:
+    properties:
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      image_profile:
+        example: scheme://domain.ltd/path/to/image.extension
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.PhotoAPI:
+    properties:
+      image_profile:
+        example: scheme://domain.ltd/path/to/image.extension
+        type: string
+    type: object
+  model.Profile:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      date_of_birth:
+        description: Date Of Birth
+        format: date
+        type: string
+      driving_license:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      last_name:
+        type: string
+      nationality:
+        type: string
+      phone:
+        type: string
+      place_of_birth:
+        type: string
+      postal_code:
+        type: integer
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+      wanted_job_title:
+        type: string
+    type: object
+  model.ProfileAPI:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      date_of_birth:
+        description: Date Of Birth
+        format: date
+        type: string
+      driving_license:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      nationality:
+        type: string
+      phone:
+        type: string
+      place_of_birth:
+        type: string
+      postal_code:
+        type: integer
+      wanted_job_title:
+        type: string
+    type: object
+  model.Skill:
+    properties:
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      level:
+        type: string
+      skill:
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.SkillAPI:
+    properties:
+      level:
+        type: string
+      skill:
+        type: string
+    type: object
+  model.WorkingExperience:
+    properties:
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+      working_experience:
+        type: string
+    type: object
+  model.WorkingExperienceAPI:
+    properties:
+      working_experience:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    name: Developer
+  description: API Documentation
+  title: My Project
+  version: 1.0.0
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: show basic response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "409":
+          description: conflict
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/lib.Response'
+      summary: show basic response
+      tags:
+      - API
+  /Education:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Education
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Education'
+            type: array
+      summary: Get List of Education
+      tags:
+      - Education
+  /Employment:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Employment
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Employment'
+            type: array
+      summary: Get List of Employment
+      tags:
+      - Employment
+  /Photo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Photo by id
+      parameters:
+      - description: Photo ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      summary: Delete Photo by id
+      tags:
+      - Photo
+  /Profile:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Profile'
+            type: array
+      summary: Get List of Profile
+      tags:
+      - Profile
+    post:
+      consumes:
+      - application/json
+      description: create new Profile
+      parameters:
+      - description: Profile data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ProfileAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.ProfileAPI'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+      summary: Create new Profile
+      tags:
+      - Profile
+  /Profile/{id}:
+    put:
+      consumes:
+      - application/json
+      description: udpated Profile by Id
+      parameters:
+      - description: Profile ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Profile data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ProfileAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.ProfileAPI'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      summary: Updated Profile by Id
+      tags:
+      - Profile
+  /Skill:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Skill
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Skill'
+            type: array
+      summary: Get List of Skill
+      tags:
+      - Skill
+  /WorkingExperience:
+    get:
+      consumes:
+      - application/json
+      description: Get List of WorkingExperience
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.WorkingExperience'
+            type: array
+      summary: Get List of WorkingExperience
+      tags:
+      - WorkingExperience
+  /education:
+    post:
+      consumes:
+      - application/json
+      description: create new Education
+      parameters:
+      - description: Education data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.EducationAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.EducationAPI'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+      summary: Create new Education
+      tags:
+      - Education
+  /education/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Education by id
+      parameters:
+      - description: Education ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      summary: Delete Education by id
+      tags:
+      - Education
+  /employment:
+    post:
+      consumes:
+      - application/json
+      description: create new Employment
+      parameters:
+      - description: Employment data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.EmploymentAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.EmploymentAPI'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+      summary: Create new Employment
+      tags:
+      - Employment
+  /employment/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Employment by id
+      parameters:
+      - description: Employment ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      summary: Delete Employment by id
+      tags:
+      - Employment
+  /info.json:
+    get:
+      consumes:
+      - application/json
+      description: show info response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "409":
+          description: conflict
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/lib.Response'
+      summary: show info response
+      tags:
+      - API
+  /photo:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Photo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Photo'
+            type: array
+      summary: Get List of Photo
+      tags:
+      - Photo
+    post:
+      consumes:
+      - application/json
+      description: create new Photo
+      parameters:
+      - description: Photo data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PhotoAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.PhotoAPI'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+      summary: Create new Photo
+      tags:
+      - Photo
+  /skill:
+    post:
+      consumes:
+      - application/json
+      description: create new Skill
+      parameters:
+      - description: Skill data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SkillAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.SkillAPI'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+      summary: Create new Skill
+      tags:
+      - Skill
+  /skill/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Skill by id
+      parameters:
+      - description: Skill ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      summary: Delete Skill by id
+      tags:
+      - Skill
+  /workingExperience/{id}:
+    put:
+      consumes:
+      - application/json
+      description: udpated WorkingExperience by Id
+      parameters:
+      - description: WorkingExperience ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: WorkingExperience data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.WorkingExperienceAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.WorkingExperienceAPI'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      summary: Updated WorkingExperience by Id
+      tags:
+      - WorkingExperience
+schemes:
+- http
+swagger: "2.0"
