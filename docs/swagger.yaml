@@ -433,23 +433,6 @@ paths:
       summary: Get List of Skill
       tags:
       - Skill
-  /WorkingExperience:
-    get:
-      consumes:
-      - application/json
-      description: Get List of WorkingExperience
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: Success
-          schema:
-            items:
-              $ref: '#/definitions/model.WorkingExperience'
-            type: array
-      summary: Get List of WorkingExperience
-      tags:
-      - WorkingExperience
   /education:
     post:
       consumes:
@@ -671,7 +654,24 @@ paths:
       summary: Delete Skill by id
       tags:
       - Skill
-  /workingExperience/{id}:
+  /working_experience:
+    get:
+      consumes:
+      - application/json
+      description: Get List of WorkingExperience
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.WorkingExperience'
+            type: array
+      summary: Get List of WorkingExperience
+      tags:
+      - WorkingExperience
+  /working_experience/{id}:
     put:
       consumes:
       - application/json

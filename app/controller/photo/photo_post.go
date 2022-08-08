@@ -25,12 +25,12 @@ func PostPhoto(c *fiber.Ctx) error {
 
 	accept := c.Get("accept")
 	if !strings.EqualFold(accept, "application/json") {
-
 		return c.Status(400).JSON(fiber.Map{
-			"message": "invalid Header",
+			"message": "invalid header",
 		})
 	}
 	var photo model.PhotoAPI
+
 	if err := c.BodyParser(&photo); err != nil {
 		return c.Status(400).JSON(fiber.Map{
 			"message": "invalid request",
@@ -38,8 +38,6 @@ func PostPhoto(c *fiber.Ctx) error {
 	}
 	create_photo := &model.Photo{PhotoAPI: photo}
 	db.Model(&model.Photo{}).Create(create_photo)
-	return c.Status(201).JSON(fiber.Map{
-		"data":    create_photo,
-		"message": "success",
-	})
+
+	return c.Status(201).JSON(create_photo)
 }

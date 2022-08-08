@@ -1,141 +1,49 @@
 package lib
 
 // import (
-// 	"bytes"
-// 	"net/http"
+// 	"mime/multipart"
+// 	"personal-project/app/model"
+// 	"personal-project/app/services"
+
+// 	"github.com/gofiber/fiber/v2"
+// 	"github.com/google/uuid"
+// 	"gorm.io/gorm"
 // )
 
-// // ==> Receipt Base64
-// func UploadFileBase64(base_64, image_name, url_api, path string) ResponseUpload {
-// 	var requestBody bytes.Buffer
-
-// 	multiPartWriter := multipart.NewWriter(&requestBody)
-
-// 	// check_connection_microservices
-// 	microservices_connect := CheckConnection(GetEnv("HOST_CDN_IMAGE") + GetEnv("URI_CDN_CHECK_CONNECTION"))
-// 	if microservices_connect == false {
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    503,
-// 				Message: "service_unavailable",
-// 			},
-// 		}
-// 		return response
+// func PostPhoto(c *fiber.Ctx) error {
+// 	db := services.DB
+// 	form, err := c.MultipartForm()
+// 	if nil != err {
+// 		return ErrorBadRequest(c, err.Error())
 // 	}
 
-// 	// Image Form
-// 	fieldImageName, err := multiPartWriter.CreateFormField("image_name")
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
-// 	}
-// 	_, err = fieldImageName.Write([]byte(image_name))
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
+// 	owner := GetXUserID(c)
+
+// 	var photo *model.Photo
+
+// 	if files, ok := form.File["files"]; ok && len(files) > 0 {
+// 		photo = createPhoto(c, db, owner, files[0])
+// 	} else {
+// 		return ErrorBadRequest(c, "invalid files field")
 // 	}
 
-// 	fieldBase64, err := multiPartWriter.CreateFormField("base_64")
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
-// 	}
-// 	_, err = fieldBase64.Write([]byte(base_64))
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
+// 	if nil == photo {
+// 		return ErrorInternal(c, "Upload failed")
 // 	}
 
-// 	// Additional Form
-// 	fieldPath, err := multiPartWriter.CreateFormField("path")
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
-// 	}
-// 	_, err = fieldPath.Write([]byte(path))
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
-// 	}
+// 	db.Create(photo).
+// 		First(&photo)
 
-// 	multiPartWriter.Close()
+// 	return OK(c, photo)
+// }
 
-// 	// By now our original request body should have been populated, so let's just use it with our custom request
-// 	req, err := http.NewRequest("POST", url_api, &requestBody)
-// 	if err != nil {
-// 		// logs.Println(err)
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
-// 	}
+// func createPhoto(c *fiber.Ctx, db *gorm.DB, owner *uuid.UUID, file *multipart.FileHeader) *model.PhotoAPI{
 
-// 	req.Header.Set("Content-Type", multiPartWriter.FormDataContentType())
+// 	uploadDirectory := lib.StorageDirectory()
+// 	ext := strings.ToLower(regexp.MustCompile(".*\\.([^\\.]+)$").ReplaceAllString(file.Filename, "$1"))
+// 	id := uuid.New()
+// 	newFileName := id.String() + "." + ext
 
-// 	client := &http.Client{}
-// 	response, err := client.Do(req)
-// 	if err != nil {
+// 	return nil
 
-// 		response := ResponseUpload{
-// 			Status: ResponseStatus{
-// 				Code:    500,
-// 				Message: "internal_server_error",
-// 			},
-// 		}
-// 		return response
-// 	}
-
-// 	var result map[string]interface{}
-// 	json.NewDecoder(response.Body).Decode(&result)
-// 	file_name := fmt.Sprintf("%v", result["data"])
-
-// 	response_data := ResponseUpload{
-// 		Filename:     file_name,
-// 		RelativePath: path + "/" + file_name,
-// 		Status: ResponseStatus{
-// 			Code:    200,
-// 			Message: "OK",
-// 		},
-// 	}
-
-// 	return response_data
 // }

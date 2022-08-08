@@ -29,16 +29,16 @@ func EducationPost(c *fiber.Ctx) error {
 			"message": "invalid header",
 		})
 	}
-	var educations model.EducationAPI
+	var education model.EducationAPI
 
-	if err := c.BodyParser(&educations); err != nil {
+	if err := c.BodyParser(&education); err != nil {
 		return c.Status(400).JSON(fiber.Map{
 			"message": "invalid request",
 		})
 	}
-	create_educations := &model.Education{EducationAPI: educations}
-	db.Model(&model.Education{}).Create(create_educations)
+	create_education := &model.Education{EducationAPI: education}
+	db.Model(&model.Profile{}).Create(create_education)
 
-	return c.Status(201).JSON(create_educations)
+	return c.Status(201).JSON(create_education)
 
 }

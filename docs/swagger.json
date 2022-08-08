@@ -285,32 +285,6 @@
                 }
             }
         },
-        "/WorkingExperience": {
-            "get": {
-                "description": "Get List of WorkingExperience",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkingExperience"
-                ],
-                "summary": "Get List of WorkingExperience",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.WorkingExperience"
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/education": {
             "post": {
                 "description": "create new Education",
@@ -648,7 +622,33 @@
                 }
             }
         },
-        "/workingExperience/{id}": {
+        "/working_experience": {
+            "get": {
+                "description": "Get List of WorkingExperience",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WorkingExperience"
+                ],
+                "summary": "Get List of WorkingExperience",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.WorkingExperience"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/working_experience/{id}": {
             "put": {
                 "description": "udpated WorkingExperience by Id",
                 "consumes": [

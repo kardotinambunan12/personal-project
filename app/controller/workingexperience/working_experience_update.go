@@ -19,7 +19,7 @@ import (
 // @Success 404
 // @Param id path string true "WorkingExperience ID"
 // @Param data body model.WorkingExperienceAPI true "WorkingExperience data"
-// @Router /workingExperience/{id} [put]
+// @Router /working_experience/{id} [put]
 // @Tags WorkingExperience
 func PutWorkingexperience(c *fiber.Ctx) error {
 	db := services.DB
