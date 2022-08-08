@@ -33,7 +33,7 @@ func Handle(app *fiber.App) {
 
 	//routes educations
 	api.Get("/education", educations.GetAllEducation)
-	api.Get("education", educations.EducationPost)
+	api.Post("education", educations.EducationPost)
 	api.Delete("/education/:id", educations.EducationDelete)
 
 	//routes employment

@@ -37,7 +37,7 @@ func EducationPost(c *fiber.Ctx) error {
 		})
 	}
 	create_education := &model.Education{EducationAPI: education}
-	db.Model(&model.Profile{}).Create(create_education)
+	db.Model(&model.Education{}).Create(create_education)
 
 	return c.Status(201).JSON(create_education)
 
