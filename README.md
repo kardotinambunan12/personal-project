@@ -13,4 +13,4 @@ How to run this project
 
 
 if you want to open the API documentation, you can go to the doc directory > click one of the swagger.yml or swagger.json files.
-then copy the file then go to https://editor.swagger.io/ paster then .... boom .. you can test there
+then copy the file, go to https://editor.swagger.io/ paster then .... boom .. you can test there
